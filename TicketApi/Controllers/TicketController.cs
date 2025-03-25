@@ -24,8 +24,13 @@ namespace TicketApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post()
+        public IActionResult Post(Contact contact)
         {
+
+            if (ModelState.IsValid == false)
+            {
+                BadRequest(ModelState);
+            }
             return Ok("Hello from the Ticket Controller - POST()");
         }
     }
