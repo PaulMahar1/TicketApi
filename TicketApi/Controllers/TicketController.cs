@@ -8,19 +8,21 @@ namespace TicketApi.Controllers
     public class TicketController : ControllerBase
     {
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<TicketController> _logger;
         private readonly IConfiguration _configuration;
 
-        public TicketController(ILogger<WeatherForecastController> logger, IConfiguration configuration)
+        public TicketController(ILogger<TicketController> logger, IConfiguration configuration)
         {
             _logger = logger;
             _configuration = configuration;
         }
 
-        [HttpGet]
-        public IActionResult Get()
+
+        // GET api/<TicketController>/5
+        [HttpGet("{id}")]
+        public string Get(int id)
         {
-            return Ok("Hello from Ticket Controller - GET()");
+            return "Hey";
         }
 
         [HttpPost]
@@ -31,7 +33,7 @@ namespace TicketApi.Controllers
             {
                 BadRequest(ModelState);
             }
-            return Ok("Hello from the Ticket Controller - POST()");
+            return Ok(contact);
         }
     }
 }
