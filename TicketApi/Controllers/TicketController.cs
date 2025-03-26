@@ -22,8 +22,8 @@ namespace TicketApi.Controllers
 
 
         // GET api/<TicketController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet]
+        public string Get()
         {
             return "Hey";
         }
