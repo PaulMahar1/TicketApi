@@ -38,7 +38,14 @@ namespace TicketApi.Controllers
             }
 
             string queueName = "tickets";
-            string connectionString = "DefaultEndpointsProtocol=https;AccountName=nscc0179231storageacct;AccountKey=x4h6WI7XR4SFBPht5GsZI/+FoBtP9Urwj8r9me6NZyTMpt7j4cuAS/Yviyy5DDaFl37q7WSI2uHF+AStV40qEQ==;EndpointSuffix=core.windows.net";
+
+            string? connectionString = _configuration["AzureStorageConnectionString"];
+
+            if (string.IsNullOrEmpty(connectionString))
+            {
+                return BadRequest("An error was encountered");
+            }
+
             QueueClient queueClient = new QueueClient(connectionString, queueName);
 
             // serialize an object to json
