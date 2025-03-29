@@ -29,7 +29,7 @@ namespace TicketApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(Contact contact)
+        public async Task<IActionResult> Post(Ticket ticket)
         {
 
             if (ModelState.IsValid == false)
@@ -49,12 +49,12 @@ namespace TicketApi.Controllers
             QueueClient queueClient = new QueueClient(connectionString, queueName);
 
             // serialize an object to json
-            string message = JsonSerializer.Serialize(contact);
+            string message = JsonSerializer.Serialize(ticket);
 
             // send string message to queue
             await queueClient.SendMessageAsync(message);
 
-            return Ok(contact);
+            return Ok(ticket);
         }
 
 

@@ -2,7 +2,7 @@
 
 namespace TicketApi
 {
-    public class Contact
+    public class Ticket
     {
         [Required]
         public int concertId { get; set; }
