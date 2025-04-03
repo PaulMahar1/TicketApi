@@ -58,9 +58,6 @@ namespace TicketApi.Controllers
             // send string message to queue
             await queueClient.SendMessageAsync(base64Message);
 
-            await queueClient.SendMessageAsync(base64Message);
-            // send string message to queue
-            await queueClient.SendMessageAsync(message);
 
             return Ok(message);
         }
