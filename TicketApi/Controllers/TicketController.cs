@@ -3,6 +3,7 @@ using System.Runtime.InteropServices.Marshalling;
 using System.Text.Json;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Text;
 
 namespace TicketApi.Controllers
 {
@@ -51,10 +52,17 @@ namespace TicketApi.Controllers
             // serialize an object to json
             string message = JsonSerializer.Serialize(ticket);
 
+            // serialize an object to json
+            var plainBytes = Encoding.UTF8.GetBytes(message);
+            string base64Message = Convert.ToBase64String(plainBytes);
+            // send string message to queue
+            await queueClient.SendMessageAsync(base64Message);
+
+            await queueClient.SendMessageAsync(base64Message);
             // send string message to queue
             await queueClient.SendMessageAsync(message);
 
-            return Ok(ticket);
+            return Ok(message);
         }
 
 
